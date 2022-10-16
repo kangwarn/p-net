@@ -297,6 +297,8 @@ static pnal_eth_mau_t calculate_mau_type (
             return PNAL_ETH_MAU_COPPER_100BaseTX_FULL_DUPLEX;
          case SPEED_1000:
             return PNAL_ETH_MAU_COPPER_1000BaseT_FULL_DUPLEX;
+         case SPEED_10000:
+            return PNAL_ETH_MAU_COPPER_10000BaseT_FULL_DUPLEX;
          default:
             break;
          }
@@ -311,6 +313,8 @@ static pnal_eth_mau_t calculate_mau_type (
             return PNAL_ETH_MAU_COPPER_100BaseTX_HALF_DUPLEX;
          case SPEED_1000:
             return PNAL_ETH_MAU_COPPER_1000BaseT_HALF_DUPLEX;
+         case SPEED_10000:
+            return PNAL_ETH_MAU_COPPER_10000BaseT_HALF_DUPLEX;
          default:
             break;
          }
@@ -389,6 +393,10 @@ static uint16_t calculate_capabilities (uint32_t advertised)
    if (advertised & ADVERTISED_1000baseT_Full)
    {
       out |= PNAL_ETH_AUTONEG_CAP_1000BaseT_FULL_DUPLEX;
+   }
+   if (advertised & ADVERTISED_10000baseT_Full)
+   {
+      out |= PNAL_ETH_AUTONEG_CAP_10000BaseT_FULL_DUPLEX;
    }
 
    if (out == 0)
